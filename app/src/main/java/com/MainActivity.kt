@@ -24,14 +24,9 @@ class MainActivity : ComponentActivity() {
             NoteTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize()
-
                 ) {
-                    // Check if user is logged in
-                    val startDestination = if (isUserLoggedIn()) {
-                        Screens.AllNotes.route
-                    } else {
-                        Screens.Login.route
-                    }
+                    // Always start with AllNotesScreen
+                    val startDestination = Screens.AllNotes.route
 
                     Navigation(
                         appContainer = appContainer,
@@ -42,6 +37,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    // This method is no longer used for determining start destination
+    // but kept for other potential uses
     private fun isUserLoggedIn(): Boolean {
         // Check SharedPreferences or SessionManager
         return appContainer.sessionManager.isLoggedIn()
